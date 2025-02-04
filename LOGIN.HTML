@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Creative Login Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2f2f2;
+            overflow: hidden;
+        }
+
+        /* Background effect: diagonal gradient animation */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Login Box */
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 60px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px);
+            z-index: 10;
+        }
+
+        /* Floating animation for the login container */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 0;
+            width: 100%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: rotate(45deg);
+            z-index: -1;
+            animation: floatingAnimation 5s infinite;
+        }
+
+        @keyframes floatingAnimation {
+            0% { top: -50%; }
+            50% { top: 0%; }
+            100% { top: -50%; }
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* Input Fields */
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 18px;
+            margin: 12px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.4s ease;
+            box-sizing: border-box;
+            position: relative;
+            transform: perspective(1000px);
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 12px rgba(255, 126, 95, 0.6);
+            transform: translateZ(20px);
+        }
+
+        /* 3D Effect for the login button */
+        .login-button {
+            width: 100%;
+            padding: 18px;
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+        }
+
+        .login-button:hover {
+            background-color: #feb47b;
+            transform: translateY(-8px) translateZ(10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-button:active {
+            transform: translateY(4px) translateZ(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .forgot-password {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #ff7e5f;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #feb47b;
+            text-decoration: underline;
+        }
+
+        /* Social Media Login Icons */
+        .social-login {
+            margin-top: 25px;
+        }
+
+        .social-login a {
+            margin: 0 10px;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .social-login a:hover {
+            background-color: #ff7e5f;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Waving Effect for Welcome */
+        .animate-wave {
+            font-size: 30px;
+            margin-bottom: 25px;
+            animation: waveAnimation 1.5s ease-in-out infinite;
+        }
+
+        @keyframes waveAnimation {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        /* 3D shadow for social media icons */
+        .social-login a {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateZ(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="login-container">
+        <div class="animate-wave">👋 Welcome Back!</div>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="login-button">Log In</button>
+        </form>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+        <div class="social-login">
+            <a href="#" title="Login with Facebook">F</a>
+            <a href="#" title="Login with Google">G</a>
+            <a href="#" title="Login with Twitter">T</a>
+        </div>
+    </div>
+
+    <script>
+        // Form validation
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if(username && password) {
+                alert('Logged in successfully!');
+            } else {
+                alert('Please fill in both fields!');
+            }
+        });
+    </script>
+</body>
+</html>
